@@ -1,0 +1,6 @@
+{
+  "name": "LearnAI Tutor",
+  "description": "An expert AI-powered interactive learning workbook for Machine Learning, Generative AI, RAG, and Data Science.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

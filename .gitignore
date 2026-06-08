@@ -1,0 +1,13 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+*.pdf
+
+# Kilo workspace artifacts (plans, scratch notes, etc.)
+.kilo/plans/
+.kilo/scratch/
