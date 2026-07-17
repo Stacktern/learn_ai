@@ -27,7 +27,7 @@ export default function Sidebar({
   onToggleCollapsed,
 }: SidebarProps) {
   const [query, setQuery] = useState('');
-  const [expanded, setExpanded] = useState<Record<string, boolean>>({ 'data-science': true });
+  const [expanded, setExpanded] = useState<Record<string, boolean>>({ 'data-science': true, 'data-science-2': true, 'data-science-3': true, 'data-science-4': true, 'data-science-5': true });
 
   useEffect(() => {
     if (variant === 'drawer') setQuery('');

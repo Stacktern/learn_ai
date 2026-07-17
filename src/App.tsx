@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Menu, MessageSquare, ChevronRight, Clock, BookOpen, X, ChevronLeft, ChevronRight as ChevronRightIcon, Sparkles, Library, ScrollText, GraduationCap } from 'lucide-react';
 import { clsx } from 'clsx';
 import { CURRICULUM_DATA } from './data/curriculum';
-import type { Lesson } from './types';
+import type { Lesson, Path } from './types';
 import { useLocalStorage } from './hooks/useLocalStorage';
 import { ThemeProvider } from './context/ThemeContext';
 import ThemeToggle from './components/ui/ThemeToggle';
@@ -26,9 +26,7 @@ import MobileBottomNav from './components/MobileBottomNav';
 import BookPromo from './components/BookPromo';
 
 function AppShell() {
-  const path = CURRICULUM_DATA[0];
-  const allLessons = useMemo(() => path.lessons, [path]);
-  const [activeLesson, setActiveLesson] = useState<Lesson>(allLessons[0]);
+  const [activeLesson, setActiveLesson] = useState<Lesson>(CURRICULUM_DATA[0].lessons[0]);
   const [completed, setCompleted] = useLocalStorage<string[]>('learnai_completed', []);
   const [quizScores, setQuizScores] = useLocalStorage<Record<string, { score: number; total: number }>>('learnai_quizzes', {});
   const [sidebarCollapsed, setSidebarCollapsed] = useLocalStorage<boolean>('learnai_sidebar_collapsed', false);
@@ -40,6 +38,13 @@ function AppShell() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const contentRef = useRef<HTMLDivElement>(null);
 
+  const owningPath = useMemo(
+    () => CURRICULUM_DATA.find((p) => p.lessons.some((l) => l.id === activeLesson.id)) ?? CURRICULUM_DATA[0],
+    [activeLesson.id],
+  );
+  const activePath: Path = owningPath;
+  const allLessons = useMemo(() => owningPath.lessons, [owningPath]);
+
   const lessonIndex = allLessons.findIndex((l) => l.id === activeLesson.id);
   const hasPrev = lessonIndex > 0;
   const hasNext = lessonIndex < allLessons.length - 1;
@@ -50,6 +55,10 @@ function AppShell() {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [activeLesson.id]);
+
+  useEffect(() => {
+    setScrollProgress(0);
   }, [activeLesson.id]);
 
   useEffect(() => {
@@ -172,7 +181,7 @@ function AppShell() {
                 </div>
 
                 <div className="hidden lg:flex items-center gap-1.5 text-sm text-text-muted min-w-0 ml-2">
-                  <span className="truncate font-medium">{path.title}</span>
+                  <span className="truncate font-medium">{activePath.title}</span>
                   <ChevronRight size={12} className="text-text-muted shrink-0" />
                   <span className="text-text-primary font-bold truncate">
                     {activeLesson.title.replace(/^\d+\.\s*/, '')}
