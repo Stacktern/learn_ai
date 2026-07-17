@@ -13,7 +13,7 @@ export interface Concept {
   keyFormulas?: { latex: string; caption: string }[];
 }
 
-export type PathId = 'data-science' | 'data-science-2' | 'data-science-3' | 'data-science-4' | 'data-science-5';
+export type PathId = 'data-science' | 'data-science-2' | 'data-science-3' | 'data-science-4' | 'data-science-5' | 'data-science-6';
 
 export interface Lesson {
   id: string;
@@ -137,7 +137,27 @@ export type PlaygroundSpec =
   | { type: 'rf-pros-cons'; title: string; instructions: string; expectedOutcome: string }
   | { type: 'gbm-concept'; title: string; instructions: string; expectedOutcome: string }
   | { type: 'gbm-train'; title: string; instructions: string; expectedOutcome: string }
-  | { type: 'gbm-pros-cons'; title: string; instructions: string; expectedOutcome: string };
+  | { type: 'gbm-pros-cons'; title: string; instructions: string; expectedOutcome: string }
+  | { type: 'hp-overview'; title: string; instructions: string; expectedOutcome: string }
+  | { type: 'hp-eda'; title: string; instructions: string; expectedOutcome: string }
+  | { type: 'hp-preprocess'; title: string; instructions: string; expectedOutcome: string }
+  | { type: 'hp-rf'; title: string; instructions: string; expectedOutcome: string }
+  | { type: 'hp-svm'; title: string; instructions: string; expectedOutcome: string }
+  | { type: 'covid-overview'; title: string; instructions: string; expectedOutcome: string }
+  | { type: 'covid-load'; title: string; instructions: string; expectedOutcome: string }
+  | { type: 'covid-prep'; title: string; instructions: string; expectedOutcome: string }
+  | { type: 'covid-eda'; title: string; instructions: string; expectedOutcome: string }
+  | { type: 'covid-lstm'; title: string; instructions: string; expectedOutcome: string }
+  | { type: 'covid-svr'; title: string; instructions: string; expectedOutcome: string }
+  | { type: 'pneu-overview'; title: string; instructions: string; expectedOutcome: string }
+  | { type: 'pneu-prep'; title: string; instructions: string; expectedOutcome: string }
+  | { type: 'cnn-core'; title: string; instructions: string; expectedOutcome: string }
+  | { type: 'cnn-how'; title: string; instructions: string; expectedOutcome: string }
+  | { type: 'cnn-advantages'; title: string; instructions: string; expectedOutcome: string }
+  | { type: 'pneumodel'; title: string; instructions: string; expectedOutcome: string }
+  | { type: 'pneu-train'; title: string; instructions: string; expectedOutcome: string }
+  | { type: 'pneu-eval'; title: string; instructions: string; expectedOutcome: string }
+  | { type: 'pneu-summary'; title: string; instructions: string; expectedOutcome: string };
 
 export interface QuizQuestion {
   id: string;
